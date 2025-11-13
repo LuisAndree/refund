@@ -41,7 +41,7 @@ form.onsubmit = (event) => {
 
 function expenseAdd(newExpense) {
     try {
-        console.log(newExpense)
+        // console.log(newExpense)
         const expenseItem = document.createElement("li")
         expenseItem.classList.add("expense")
 
@@ -85,18 +85,21 @@ function updateTotals() {
 
         let total = 0
 
-        for (let item; item < items.length; item++) {
+        for (let item = 0; item < items.length; item++) {
             const itemAmount = items[item].querySelector(".expense-amount")
 
             let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".")
             value = parseFloat(value)
+            console.log(value)
 
             if (isNaN(value)) {
                 return alert(
                     "Não foi possível calcular o total. O valor não parece ser um número."
                 )
             }
+            total += Number(value)
         }
+        
         const symbolBRL = document.createElement("small")
         symbolBRL.textContent = "R$"
 
