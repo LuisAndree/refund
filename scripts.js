@@ -90,8 +90,7 @@ function updateTotals() {
 
             let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".")
             value = parseFloat(value)
-            console.log(value)
-
+    
             if (isNaN(value)) {
                 return alert(
                     "Não foi possível calcular o total. O valor não parece ser um número."
@@ -99,7 +98,7 @@ function updateTotals() {
             }
             total += Number(value)
         }
-        
+
         const symbolBRL = document.createElement("small")
         symbolBRL.textContent = "R$"
 
@@ -111,4 +110,13 @@ function updateTotals() {
         alert("Não foi possível atualizar os totais.")
     }
 }
+
+expenseList.addEventListener("click", (event) => {
+    if (event.target.classList.contains("remove-icon")) {
+        const item = event.target.closest(".expense")
+        item.remove()
+    }
+
+    updateTotals()
+})
 
